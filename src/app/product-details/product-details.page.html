@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="portfolio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-slides pager="true">
+    <ng-container *ngIf="movieURLs!=[]" >
+      <ion-slide *ngFor="let movieURL of movieURLs">
+        <ion-card>
+          <iframe [src]="movieURL" width=640 height=360 ></iframe>
+        </ion-card>
+      </ion-slide>
+    </ng-container>
+    <ng-container *ngIf="photoURLs!=[]">
+      <ion-slide *ngFor="let photoURL of photoURLs">
+        <ion-card>
+          <img [src]="photoURL" class="trim" >
+        </ion-card>
+      </ion-slide>
+    </ng-container>
+  </ion-slides>
+
+<div class="date-content">{{date}}</div>
+<h3>{{title}}</h3>
+
+<ion-chip *ngFor="let chip of chips" color="secondary">
+  <ion-label color="dark">{{chip}}</ion-label>
+</ion-chip>
+
+<p>{{content}}</p>
+
+
+
+<h3>link</h3>
+<ion-list>
+  <ion-item *ngIf="serviceURL!=''">
+    <ion-label (click)="openurl(serviceURL)">
+      <img src="assets/webpage.svg" width="20px" slot="start">
+      website
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="youtubeURL!=''">
+    <ion-label (click)="openurl(youtubeURL)">
+      <i class="fab fa-youtube" slot="start"></i>
+      Youtube
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="logURL!=''">
+    <ion-label (click)="openurl(logURL)">
+      <i class="fas fa-file-alt" slot="start"></i>
+      開発ログ
+    </ion-label>
+  </ion-item>
+
+</ion-list>
+
+</ion-content>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.5.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+     <script src="/__/firebase/7.5.1/firebase-analytics.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="/__/firebase/7.5.1/firebase-firestore.js"></script>
+
+  <!-- Initialize Firebase -->
+  <script src="/__/firebase/init.js"></script>

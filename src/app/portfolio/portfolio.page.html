@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+    <ion-title>portfolio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p *ngIf="productCards.length==0">コンテンツを取得中...</p>
+  <div class="grid-container">
+  <ion-card *ngFor="let card of productCards" [routerLink]="['product-details', card.title]" routerDirection="forward">
+    <div class="trim">
+      <img *ngIf="card.overviewMedia=='img' && card.mediaSrc!='' " [src]="card.mediaSrc">
+      <img *ngIf="card.overviewMedia=='img' && card.mediaSrc=='' " src="assets/CommingSoon.svg">
+    </div>
+    <ion-card-header>
+      <ion-card-subtitle>{{card.subtitle}}</ion-card-subtitle>
+      <ion-card-title>{{card.title}}</ion-card-title>
+      <ion-chip *ngFor="let chip of card.chips" color="secondary">
+        <ion-label color="dark">{{chip}}</ion-label>
+      </ion-chip>
+    </ion-card-header>
+    <ion-card-content>
+      {{card.content}}
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>
